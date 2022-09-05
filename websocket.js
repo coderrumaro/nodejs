@@ -1,11 +1,10 @@
 const io = require("socket.io")(100, {
   cors: {
-    origin: "http://localhost:1234",
-    methord:"get"
+    origin: "*",
   },
 });
-io.on("connection", (Socket) => {
-  Socket.on("message", (data) => {
-    Socket.emit("fromserver",`hello client ${data}`)
+io.on("connection", (socket) => {
+  socket.on("message", (data) => {
+    socket.emit("fromserver", `hello client ${data}`);
   });
 });
